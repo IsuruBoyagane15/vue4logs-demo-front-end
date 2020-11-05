@@ -28,5 +28,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # FYP-demo-front_end
 
 # Description
-this will provide options to the user to upload the log file and the configuration file
-Afterprocessing the log file in the back end, it will send the templates relavent to each log line 
+this will provide options to the user to upload the log file and the configuration file.
+After processing the log file in the back end, it will send the templates relavent to each log line 
