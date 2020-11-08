@@ -306,14 +306,14 @@
 
 <div class="content" role="main">
   <div class="Block">
-    <label id="lbl">config file </label>
+    <label id="lbl">config file: &nbsp;&nbsp;</label>
     <input type='file' (change)="config_fileChanged($event)">
     
   </div>
   <br>
   <br>
   <div class="Block">
-    <label id="lbl">log file </label>
+    <label id="lbl">log file: &nbsp;&nbsp;</label>
     <input type='file' (change)="log_fileChanged($event)">
     
   </div>
@@ -324,18 +324,24 @@
   <br>
   <br>
   <br>
-  <table>
+  <table class="table table-bordered">
     <thead>
       <th>ID</th>
-      <th>Log Line</th>
+      <th>Content</th>
+      <th>EventId</th>
       <th>Template</th>
     </thead>
     <tbody>
-      <tr *ngFor="let group of groups; let i=index">
+      <tr class="w3-light-grey" *ngFor="let group of groups; let i=index">
         <td>{{i}}</td>
-        <td>{{group.log_line}}</td>
         <td>
-          {{group.template}}
+          {{group.Content}}
+        </td>
+        <td>
+          {{group.EventId}}
+        </td>
+        <td>
+          {{group.EventTemplate}}
         </td>
       </tr>
     </tbody>
