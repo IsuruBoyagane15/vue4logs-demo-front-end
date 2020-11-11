@@ -297,56 +297,48 @@
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <img width="40" alt="Angular Logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
+  <img width="40" src="" />
   <span>Vue4Logs</span>
   <div class="spacer"></div>
 
 </div>
 
-<div class="content" role="main">
-  <div class="Block">
-    <label id="lbl">config file: &nbsp;&nbsp;</label>
-    <input type='file' (change)="config_fileChanged($event)">
-    
-  </div>
-  <br>
-  <br>
-  <div class="Block">
-    <label id="lbl">log file: &nbsp;&nbsp;</label>
-    <input type='file' (change)="log_fileChanged($event)">
-    
-  </div>
-  <br>
-  <br>
-  <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
-  <br>
-  <br>
-  <br>
-  <br>
-  <table class="table table-bordered">
-    <thead>
-      <th>ID</th>
-      <th>Content</th>
-      <th>EventId</th>
-      <th>Template</th>
-    </thead>
-    <tbody>
-      <tr class="w3-light-grey" *ngFor="let group of groups; let i=index">
-        <td>{{i}}</td>
-        <td>
-          {{group.Content}}
-        </td>
-        <td>
-          {{group.EventId}}
-        </td>
-        <td>
-          {{group.EventTemplate}}
-        </td>
-      </tr>
-    </tbody>
-  </table>
 
+<div class="content" role="main">
+  <div class="span6">
+    <h2 class="muted">AUTOMATIC STRUCTURING OF TEXTUAL SYSTEM LOGS</h2>
+  </div>
+  <br>
+  <br>
+
+  <form class="form-inline">
+    <label id="lbl">configuration file: &nbsp;&nbsp;</label>
+    <div class="Block">
+      
+      <input type='file' (change)="config_fileChanged($event)">
+      
+    </div>
+    <br>
+    <br>
+    <label id="lbl">log file: &nbsp;&nbsp;</label>
+    <div class="Block">
+      
+      <input type='file' (change)="log_fileChanged($event)">
+      
+    </div>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+    
+  </form>
+
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  
+ 
 
 
 

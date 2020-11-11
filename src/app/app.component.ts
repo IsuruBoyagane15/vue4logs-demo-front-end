@@ -51,11 +51,22 @@ export class AppComponent {
 
   submit() {
     this.dataService.uploadData(this.arr).subscribe((data) => {
-      console.log(data);
-      this.groups = data
+      // console.log(data);
+      let regrouped_logs = this.groupByKey(data, 'EventId');
+      console.log(regrouped_logs)
+      this.groups = regrouped_logs
+      
     }, error => {
       console.log("Not passed")
     });
   }
+
+  groupByKey(array, key) {
+    return array.reduce(function(rv, x) {
+      (rv[x[key]] = rv[x[key]] || []).push(x);
+      return rv;
+    }, {});
+ }
+ 
 
 }

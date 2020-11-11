@@ -11,7 +11,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   uploadData(body: any) {
-    console.log(body);
+    // console.log(body);
     return this.http.post(this.url + 'submit', body, {
       observe: 'body'
     });
