@@ -12,7 +12,8 @@ export class AppComponent {
   conf_file: any;
   log_file: any;
   arr = {};
-
+  panelOpenState = false;
+  
   constructor(private dataService: DataService) {
     
 
@@ -52,7 +53,7 @@ export class AppComponent {
   submit() {
     this.dataService.uploadData(this.arr).subscribe((data) => {
       // console.log(data);
-      let regrouped_logs = this.groupByKey(data, 'EventId');
+      let regrouped_logs = this.groupByKey(data, 'EventTemplate');
       console.log(regrouped_logs)
       this.groups = regrouped_logs
       
