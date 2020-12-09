@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from './data.service';
 
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,9 +14,15 @@ export class AppComponent {
   log_file: any;
   arr = {};
   panelOpenState = false;
-  
-  constructor(private dataService: DataService) {
-    
+  edit: any;
+  loadComponent: any;
+  item: any;
+  ischecked: any;
+  selectedTemps = [];
+  newTemp: any;
+  constructor(private dataService: DataService, public dialog: MatDialog) {
+    this.edit = false;
+    this.loadComponent = false;
 
   }
 
@@ -34,7 +41,7 @@ export class AppComponent {
     fileReader.onload = (e) => {
       // console.log(fileReader.result);
       this.arr["conf"] = fileReader.result
-      
+
     }
     fileReader.readAsText(this.conf_file);
 
@@ -51,23 +58,57 @@ export class AppComponent {
   }
 
   submit() {
+    this.edit = true;
     this.dataService.uploadData(this.arr).subscribe((data) => {
       // console.log(data);
       let regrouped_logs = this.groupByKey(data, 'EventTemplate');
       console.log(regrouped_logs)
       this.groups = regrouped_logs
-      
+
     }, error => {
       console.log("Not passed")
     });
   }
 
   groupByKey(array, key) {
-    return array.reduce(function(rv, x) {
+    return array.reduce(function (rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
     }, {});
- }
- 
+  }
+  merge() {
+    this.loadComponent = true;
+    this.edit = false;
+  }
+  onChange(id: string, isChecked: boolean) {
+    this.ischecked = isChecked
+    this.item = id;
+    console.log(this.item)
+    
+    if(this.selectedTemps.includes(this.item)){
+      this.selectedTemps.splice(this.selectedTemps.indexOf(this.item),1);
+      
+    }
+    else{
+      this.selectedTemps.push(this.item);
+    }
+    console.log(this.selectedTemps)
+  }
 
+  saveChanges(){
+    let temp = []
+    for (var val of this.selectedTemps) {
+      for (var i of this.groups[val]) {
+        temp.push(i)
+      }
+            
+    }
+    for (var val of this.selectedTemps) {
+         delete this.groups[val];         
+    }
+    
+    this.groups[this.newTemp]=temp;
+    console.log(this.groups);
+    
+  }
 }

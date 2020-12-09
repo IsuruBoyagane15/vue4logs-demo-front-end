@@ -8,9 +8,14 @@ import {DataService} from './data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EditModelComponent } from './edit-model/edit-model.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditModelComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +24,9 @@ import {MatListModule} from '@angular/material/list';
     BrowserAnimationsModule,
     MatExpansionModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    FormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

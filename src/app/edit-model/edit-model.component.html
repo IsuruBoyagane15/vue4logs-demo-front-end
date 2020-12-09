@@ -1,0 +1,17 @@
+<div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+         
+          <div class="row">
+            
+            <div class="col-4 col-sm-6">
+              <div *ngFor="let item of groups | keyvalue">
+                <input type="checkbox"> Key: <b>{{item.key}}</b> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
