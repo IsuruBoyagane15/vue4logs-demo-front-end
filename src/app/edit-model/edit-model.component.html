@@ -295,8 +295,9 @@
     <h2 class="muted">AUTOMATIC STRUCTURING OF TEXTUAL SYSTEM LOGS</h2>
   </div>
   <br>
+  
+  <h5>Please Upload Required Files Here......</h5>
   <br>
-
   <form class="form-inline">
     <label id="lbl">
       <h5>Upload configuration file:</h5> &nbsp;&nbsp;
@@ -495,10 +496,10 @@
       <div class="jumbotron" style="padding: 2%;height: 100%;background-color: #f5f5f5;">
         <h2 class="display-6">Summary</h2>
         <div class="chart-wrapper" style="height: 100%; width: 100%;margin-left:auto;margin-right:auto;">
-          
-            <canvas height="100" width="100" baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-              (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-          
+
+          <canvas height="100" width="100" baseChart [data]="pieChartData" [labels]="pieChartLabels"
+            [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+
         </div>
       </div>
     </div>
