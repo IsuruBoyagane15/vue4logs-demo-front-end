@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service';
-
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -25,14 +26,27 @@ export class EditModelComponent implements OnInit {
   logId: any;
   checked: any;
   selectedLogs = [];
-  a:any;
+  a: any;
+  pieChartLabels: string[] = [];
+  pieChartData: number[] = [];
+  pieChartType: string = 'pie';
 
-  constructor(private dataService: DataService, public dialog: MatDialog) { 
+
+  constructor(private dataService: DataService, public dialog: MatDialog) {
     this.edit = false;
     this.loadComponent = false;
+    
   }
-  
+
   ngOnInit() {
+
+  }
+  public chartClicked(e: any): void {
+    // console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    // console.log(e);
   }
   config_fileChanged(e) {
     this.conf_file = e.target.files[0];
@@ -66,15 +80,23 @@ export class EditModelComponent implements OnInit {
 
   submit() {
     this.edit = true;
+
     this.dataService.uploadData(this.arr).subscribe((data) => {
       // console.log(data);
       let regrouped_logs = this.groupByKey(data, 'EventTemplate');
-      console.log('regrouped_logs ',regrouped_logs)
+      console.log('regrouped_logs ', regrouped_logs)
       this.groups = regrouped_logs
+      console.log(this.groups)
+      this.pieChartLabels = Object.keys(this.groups);
+
+      for (var i of this.pieChartLabels) {
+        this.pieChartData.push(this.groups[i].length)
+      }
 
     }, error => {
       console.log("Not passed")
     });
+
   }
 
   groupByKey(array, key) {
@@ -120,8 +142,8 @@ export class EditModelComponent implements OnInit {
   }
 
   splitTemplate(event, i, key) {
-    this.a=key
-    console.log(i,key,'i')
+    this.a = key
+    console.log(i, key, 'i')
     console.log(Object.keys(this.groups))
     console.log(this.groups[key])
     this.splitArr = this.groups[key];
@@ -134,7 +156,7 @@ export class EditModelComponent implements OnInit {
     console.log(this.selectedLogs.includes(index))
     if (this.selectedLogs.includes(index)) {
       this.selectedLogs.splice(index, 1);
-      
+
       // 
     }
     else {
@@ -146,25 +168,25 @@ export class EditModelComponent implements OnInit {
 
   save() {
     let l = [];
-    for(var k of this.selectedLogs){
+    for (var k of this.selectedLogs) {
       l.push(this.splitArr[k])
     }
     this.groups[this.newTemplate] = l;
-    console.log('groups',this.groups)
-    for (var i of this.selectedLogs){
-      console.log("adsfadsf",this.splitArr)
-      
+    console.log('groups', this.groups)
+    for (var i of this.selectedLogs) {
+      console.log("adsfadsf", this.splitArr)
+
       this.splitArr.splice(i, 1);
-      this.groups[this.a]=this.splitArr;
-        
-      
-      
-      
+      this.groups[this.a] = this.splitArr;
+
+
+
+
     }
-    
-    
+
+
     // console.log(this.groups)
     this.selectedLogs = [];
-    this.a='';
+    this.a = '';
   }
 }

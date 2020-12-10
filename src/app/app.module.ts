@@ -11,6 +11,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditModelComponent } from './edit-model/edit-model.component';
 import { FormsModule } from '@angular/forms';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,10 @@ import { FormsModule } from '@angular/forms';
     MatDividerModule,
     MatListModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
-  providers: [DataService],
+  providers: [DataService, ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
