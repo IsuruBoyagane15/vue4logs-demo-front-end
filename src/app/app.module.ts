@@ -12,11 +12,13 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { EditModelComponent } from './edit-model/edit-model.component';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule, ThemeService } from 'ng2-charts';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditModelComponent
+    EditModelComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
