@@ -30,7 +30,7 @@ export class EditModelComponent implements OnInit {
   pieChartLabels: string[] = [];
   pieChartData: number[] = [];
   pieChartType: string = 'pie';
-
+  headlines = [];
 
   constructor(private dataService: DataService, public dialog: MatDialog) {
     this.edit = false;
@@ -86,9 +86,11 @@ export class EditModelComponent implements OnInit {
       let regrouped_logs = this.groupByKey(data, 'EventTemplate');
       console.log('regrouped_logs ', regrouped_logs)
       this.groups = regrouped_logs
-      console.log(this.groups)
+      // console.log(this.groups)
       this.pieChartLabels = Object.keys(this.groups);
-
+      // console.log('asdf', Object.keys(this.groups[this.pieChartLabels[0]][0]))
+      this.headlines.push(Object.keys(this.groups[this.pieChartLabels[0]][0]));
+      console.log('headlines',this.headlines)
       for (var i of this.pieChartLabels) {
         this.pieChartData.push(this.groups[i].length)
       }
