@@ -30,6 +30,10 @@ export class EditModelComponent implements OnInit {
   pieChartLabels: string[] = [];
   pieChartData: number[] = [];
   pieChartType: string = 'pie';
+  pieChartColors: Array < any > = [{
+    backgroundColor: []//['#fc5858', '#19d863', '#fdf57d']
+  }];
+  pieColors: string[] = [];
   headlines = [];
 
   constructor(private dataService: DataService, public dialog: MatDialog) {
@@ -40,6 +44,16 @@ export class EditModelComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+  generateRgb(n){
+    for(let i = 0; i < n; i++){
+      var r = () => Math.random() * 256 >> 0;
+      var color = `rgb(${r()}, ${r()}, ${r()})`;
+      this.pieColors.push(color);
+      console.log('color',color);
+    }
+    this.pieChartColors[0]['backgroundColor'] = this.pieColors;
+    console.log('colors',this.pieColors);
   }
   public chartClicked(e: any): void {
     // console.log(e);
@@ -90,10 +104,11 @@ export class EditModelComponent implements OnInit {
       this.pieChartLabels = Object.keys(this.groups);
       // console.log('asdf', Object.keys(this.groups[this.pieChartLabels[0]][0]))
       this.headlines.push(Object.keys(this.groups[this.pieChartLabels[0]][0]));
-      console.log('headlines',this.headlines)
+      // console.log('headlines',this.headlines)
       for (var i of this.pieChartLabels) {
         this.pieChartData.push(this.groups[i].length)
       }
+      this.generateRgb(this.pieChartData.length);
 
     }, error => {
       console.log("Not passed")
@@ -110,6 +125,14 @@ export class EditModelComponent implements OnInit {
   merge() {
     this.loadComponent = true;
     this.edit = false;
+    this.pieChartLabels = Object.keys(this.groups);
+      // console.log('asdf', Object.keys(this.groups[this.pieChartLabels[0]][0]))
+      this.headlines.push(Object.keys(this.groups[this.pieChartLabels[0]][0]));
+      // console.log('headlines',this.headlines)
+      for (var i of this.pieChartLabels) {
+        this.pieChartData.push(this.groups[i].length)
+      }
+      this.generateRgb(this.pieChartData.length);
   }
   onChange(id: string, isChecked: boolean) {
     this.ischecked = isChecked
@@ -128,6 +151,8 @@ export class EditModelComponent implements OnInit {
 
   saveChanges() {
     let temp = []
+    this.pieChartLabels = [];
+    this.pieChartData = [];
     for (var val of this.selectedTemps) {
       for (var i of this.groups[val]) {
         temp.push(i)
@@ -140,6 +165,13 @@ export class EditModelComponent implements OnInit {
 
     this.groups[this.newTemp] = temp;
     console.log(this.groups);
+
+    this.pieChartLabels = Object.keys(this.groups);
+    
+    for (var j of this.pieChartLabels) {
+      this.pieChartData.push(this.groups[j].length)
+    }
+    this.generateRgb(this.pieChartData.length);
 
   }
 
@@ -170,6 +202,8 @@ export class EditModelComponent implements OnInit {
 
   save() {
     let l = [];
+    this.pieChartLabels = [];
+    this.pieChartData = [];
     for (var k of this.selectedLogs) {
       l.push(this.splitArr[k])
     }
@@ -185,7 +219,12 @@ export class EditModelComponent implements OnInit {
 
 
     }
-
+    this.pieChartLabels = Object.keys(this.groups);
+    
+    for (var j of this.pieChartLabels) {
+      this.pieChartData.push(this.groups[j].length)
+    }
+    this.generateRgb(this.pieChartData.length);
 
     // console.log(this.groups)
     this.selectedLogs = [];

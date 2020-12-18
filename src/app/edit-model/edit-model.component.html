@@ -291,6 +291,8 @@
 
 
 <div class="content" role="main">
+  <img width="200" src="https://uom.lk/sites/default/files/cse/IntelliSense/images/CSE.jpg" /><br><br>
+        <h3>Final Year Project - CSE'16</h3> <br>
   <div class="span">
     <h2 class="muted">AUTOMATIC STRUCTURING OF TEXTUAL SYSTEM LOGS</h2>
   </div>
@@ -521,7 +523,7 @@
         <div class="chart-wrapper" style="height: 100%; width: 100%;margin-left:auto;margin-right:auto;">
 
           <canvas height="100" width="100" baseChart [data]="pieChartData" [labels]="pieChartLabels"
-            [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            [chartType]="pieChartType" (chartHover)="chartHovered($event)" [colors]="pieChartColors" (chartClick)="chartClicked($event)"></canvas>
 
         </div>
       </div>
