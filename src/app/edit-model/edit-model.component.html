@@ -291,10 +291,10 @@
 
 
 <div class="content" role="main">
-  <img width="200" src="https://uom.lk/sites/default/files/cse/IntelliSense/images/CSE.jpg" /><br><br>
-        <h3>Final Year Project - CSE'16</h3> <br>
+  <img width="100" src="https://uom.lk/sites/default/files/cse/IntelliSense/images/CSE.jpg" /><br>
+        <!-- <h3>Final Year Project - CSE'16</h3> <br> -->
   <div class="span">
-    <h2 class="muted">AUTOMATIC STRUCTURING OF TEXTUAL SYSTEM LOGS</h2>
+    <h3 class="muted">AUTOMATIC STRUCTURING OF TEXTUAL SYSTEM LOGS</h3>
   </div>
   <br>
   
@@ -516,13 +516,13 @@
       </div>
     </div>
 
-    <div class="col-6 col-md-4" *ngIf="edit" style="border-color: red;">
+    <div class="col-6 col-md-4" *ngIf="edit">
 
-      <div class="jumbotron" style="padding: 2%;height: 100%;background-color: #f5f5f5;">
+      <div class="jumbotron" style="padding: 2%;background-color: #f5f5f5;">
         <h2 class="display-6">Summary</h2>
-        <div class="chart-wrapper" style="height: 100%; width: 100%;margin-left:auto;margin-right:auto;">
+        <div class="chart-wrapper" style="margin-left:auto;margin-right:auto;padding-left: 3%;">
 
-          <canvas height="100" width="100" baseChart [data]="pieChartData" [labels]="pieChartLabels"
+          <canvas height="100" width="100" baseChart [data]="pieChartData" [labels]="headlines"
             [chartType]="pieChartType" (chartHover)="chartHovered($event)" [colors]="pieChartColors" (chartClick)="chartClicked($event)"></canvas>
 
         </div>

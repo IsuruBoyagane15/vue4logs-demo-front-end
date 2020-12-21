@@ -94,7 +94,9 @@ export class EditModelComponent implements OnInit {
 
   submit() {
     this.edit = true;
-
+    this.pieChartLabels = [];
+    this.pieChartData = [];
+    this.headlines = [];
     this.dataService.uploadData(this.arr).subscribe((data) => {
       // console.log(data);
       let regrouped_logs = this.groupByKey(data, 'EventTemplate');
@@ -103,11 +105,15 @@ export class EditModelComponent implements OnInit {
       // console.log(this.groups)
       this.pieChartLabels = Object.keys(this.groups);
       // console.log('asdf', Object.keys(this.groups[this.pieChartLabels[0]][0]))
-      this.headlines.push(Object.keys(this.groups[this.pieChartLabels[0]][0]));
-      // console.log('headlines',this.headlines)
+      // this.headlines.push(Object.keys(this.groups[this.pieChartLabels[0]][0]['EventId']));
+      
       for (var i of this.pieChartLabels) {
         this.pieChartData.push(this.groups[i].length)
       }
+      for (var i of this.pieChartLabels) {
+        this.headlines.push(this.groups[i][0]['EventId'])
+      }
+      console.log('headlines',this.headlines)
       this.generateRgb(this.pieChartData.length);
 
     }, error => {
@@ -153,6 +159,7 @@ export class EditModelComponent implements OnInit {
     let temp = []
     this.pieChartLabels = [];
     this.pieChartData = [];
+    this.headlines = [];
     for (var val of this.selectedTemps) {
       for (var i of this.groups[val]) {
         temp.push(i)
@@ -170,6 +177,9 @@ export class EditModelComponent implements OnInit {
     
     for (var j of this.pieChartLabels) {
       this.pieChartData.push(this.groups[j].length)
+    }
+    for (var k of this.pieChartLabels) {
+      this.headlines.push(this.groups[k][0]['EventId'])
     }
     this.generateRgb(this.pieChartData.length);
 
@@ -204,6 +214,7 @@ export class EditModelComponent implements OnInit {
     let l = [];
     this.pieChartLabels = [];
     this.pieChartData = [];
+    this.headlines = [];
     for (var k of this.selectedLogs) {
       l.push(this.splitArr[k])
     }
@@ -223,6 +234,9 @@ export class EditModelComponent implements OnInit {
     
     for (var j of this.pieChartLabels) {
       this.pieChartData.push(this.groups[j].length)
+    }
+    for (var x of this.pieChartLabels) {
+      this.headlines.push(this.groups[x][0]['EventId'])
     }
     this.generateRgb(this.pieChartData.length);
 
