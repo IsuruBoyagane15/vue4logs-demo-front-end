@@ -1,12 +1,12 @@
 <div class="card text-center">
     <div class="card-header">
         <img width="150" src="https://uom.lk/sites/default/files/cse/IntelliSense/images/CSE.jpg" /><br><br>
-        <h5>Final Year Project - CSE'16</h5>
-        <h5 class="card-title"> Automatic Structuring of Textual System Logs</h5>
+        <h5>Research and Development Project</h5>
+        <h5 class="card-title">vue4logs - Automatic Structuring of Textual System Logs</h5>
     </div>
     <div class="card-body">
-        
-        
+
+
 
 
         <div class="container" style="text-align: left;width: 80%;">
@@ -27,25 +27,28 @@
                         <p class="card-text">Raw log line : </p>
                     </strong><br>
                     <p>
-                        <span style="color: #ff0000">2019-11-18 20:18:29,467 [INFO] distributedConsensus.LeaderCandidate</span>&nbsp;
-                        <span style="color: royalblue;">Participated to a new round of number 13 with rank as 263</span> 
+                        <span style="color: #ff0000">2019-11-18 20:18:29,467 [INFO]
+                            distributedConsensus.LeaderCandidate</span>&nbsp;
+                        <span style="color: royalblue;">Participated to a new round of number <span
+                                style="color:black">13</span> with rank as <span style="color:black">263</span></span>
                     </p>
                     <table class="table table-striped table-dark">
-                        
+
                         <tbody>
-                          <tr>
-                            <th scope="row">Header fields</th>
-                            <td>2019-11-18 20:18:29,467 [INFO] distributedConsensus.LeaderCandidate</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">Natural language log message</th>
-                            <td>Participated to a new round of number 13 with rank as 263</td>
-                            
-                          </tr>
-                          
+                            <tr>
+                                <th scope="row">Header fields</th>
+                                <td>2019-11-18 20:18:29,467 [INFO] distributedConsensus.LeaderCandidate</td>
+
+                            </tr>
+                            <tr>
+                                <th scope="row">Natural language log message</th>
+                                <td>Participated to a new round of number <span style="color:rgb(51, 255, 0)">13</span>
+                                    with rank as <span style="color:rgb(51, 255, 0)">263</span> </td>
+
+                            </tr>
+
                         </tbody>
-                      </table>
+                    </table>
                 </div>
             </div>
             <br>
@@ -55,16 +58,27 @@
                 <p class="card-text">To do that the tool requires : </p>
             </strong>
             <br>
-            <p>&#8226; Configuration file with header structure</p>
             <p>&#8226; Raw log file</p>
+            <p>&#8226; Configuration file with header structure</p>
+            <div class="card">
+                <div class="card-body">
+                    <strong>
+                        <p class="card-text">Sample Configuration File : (  file.txt    )</p>
+                    </strong><br>
+                    <p>
+                        <span style="color: royalblue;">{{log_format}}</span>
+                    </p>
+                </div>
 
+
+            </div>
+
+            
 
         </div>
-
+        <br>
         <a routerLink="/parser" class="btn btn-primary">Start &#8611;</a>
-
-    </div>
-    <!-- <div class="card-footer text-muted">
+        <!-- <div class="card-footer text-muted">
       2 days ago
     </div> -->
-</div>
+    </div>

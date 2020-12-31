@@ -16,4 +16,10 @@ export class DataService {
       observe: 'body'
     });
   }
+
+  save(body: any){
+    return this.http.post(this.url + 'save', body, {
+      observe: 'body'
+    });
+  }
 }

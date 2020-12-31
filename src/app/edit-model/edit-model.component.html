@@ -294,23 +294,14 @@
   <img width="100" src="https://uom.lk/sites/default/files/cse/IntelliSense/images/CSE.jpg" /><br>
         <!-- <h3>Final Year Project - CSE'16</h3> <br> -->
   <div class="span">
-    <h3 class="muted">AUTOMATIC STRUCTURING OF TEXTUAL SYSTEM LOGS</h3>
+    <h3 class="muted">vue4logs - AUTOMATIC STRUCTURING OF TEXTUAL SYSTEM LOGS</h3>
   </div>
   <br>
   
   <h5>Please Upload Required Files Here......</h5>
   <br>
   <form class="form-inline">
-    <label id="lbl">
-      <h5>Upload configuration file:</h5> &nbsp;&nbsp;
-    </label>
-    <div class="Block">
-
-      <input type='file' (change)="config_fileChanged($event)">
-
-    </div>
-    <br>
-    <br>
+    
     <label id="lbl">
       <h5>Upload log file:</h5> &nbsp;&nbsp;
     </label>
@@ -321,7 +312,16 @@
     </div>
     <br>
     <br>
+    <label id="lbl">
+      <h5>Upload configuration file:</h5> &nbsp;&nbsp;
+    </label>
+    <div class="Block">
 
+      <input type='file' (change)="config_fileChanged($event)">
+
+    </div>
+    <br>
+    <br>
 
   </form>
   <br>
@@ -365,8 +365,8 @@
 
 
 <div class="container">
-  <div class="row">
-    <div class="col-12 col-md-8">
+  <div>
+    <div>
       <div class="container" *ngIf="!loadComponent">
         <mat-accordion *ngFor="let group of groups | keyvalue; let i = index;">
 
@@ -376,10 +376,10 @@
               <mat-panel-title>
                 {{group.key}}
               </mat-panel-title>
-              <mat-panel-description>
+              <!-- <mat-panel-description>
                 click to view relevant log messages &nbsp;&nbsp;&nbsp;
 
-              </mat-panel-description>
+              </mat-panel-description> -->
 
             </mat-expansion-panel-header>
 
@@ -477,6 +477,10 @@
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
           Merge templates
         </button>
+
+        <button type="button" class="btn btn-primary btn-lg" style="float: right;" (click)='saveEdits()'>
+          Save
+        </button>
       </div>
 
       <!-- Modal -->
@@ -515,10 +519,10 @@
         </div>
       </div>
     </div>
+<br>
+    <div *ngIf="edit">
 
-    <div class="col-6 col-md-4" *ngIf="edit">
-
-      <div class="jumbotron" style="height: 100%;;padding: 2%;background-color: #f5f5f5;">
+      <div class="jumbotron" style="height: 100%;width: 100%;padding: 2%;background-color: #f5f5f5;">
         <h2 class="display-6">Summary</h2>
         <div class="chart-wrapper" style="margin-left:auto;margin-right:auto;">
 

@@ -244,4 +244,11 @@ export class EditModelComponent implements OnInit {
     this.selectedLogs = [];
     this.a = '';
   }
+
+  saveEdits(){
+    this.dataService.save(this.groups).subscribe((data) => {
+        console.log("saveEdits: ", data);
+    });
+
+  }
 }
