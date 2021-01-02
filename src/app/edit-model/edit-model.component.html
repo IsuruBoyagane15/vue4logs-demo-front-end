@@ -392,7 +392,7 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Event Id</th>
+                      <!-- <th scope="col">Event Id</th> -->
                       <th scope="col">Headers</th>
                       <th scope="col">Log Message</th>
                       
@@ -401,7 +401,7 @@
                   <tbody>
                     <tr *ngFor="let item of group.value">
                       
-                      <td>{{item.EventId}}</td>
+                      <!-- <td>{{item.EventId}}</td> -->
                       <td>{{item.headers}}</td>
                       <td>{{item.Content}}</td>
                       
@@ -526,7 +526,7 @@
         <h2 class="display-6">Summary</h2>
         <div class="chart-wrapper" style="margin-left:auto;margin-right:auto;">
 
-          <canvas height="100" width="100" baseChart [data]="pieChartData" [labels]="headlines"
+          <canvas height="100" width="100" baseChart [data]="pieChartData" [labels]="pieChartLabels"
             [chartType]="pieChartType" (chartHover)="chartHovered($event)" [colors]="pieChartColors" (chartClick)="chartClicked($event)"></canvas>
 
         </div>

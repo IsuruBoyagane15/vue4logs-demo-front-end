@@ -17,7 +17,8 @@ export class DataService {
     });
   }
 
-  save(body: any){
+  save(logs: any, fileName){
+    const body = {'logs': logs, 'fileName': fileName}
     return this.http.post(this.url + 'save', body, {
       observe: 'body'
     });

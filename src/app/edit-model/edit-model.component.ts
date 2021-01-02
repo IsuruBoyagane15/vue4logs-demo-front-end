@@ -35,6 +35,7 @@ export class EditModelComponent implements OnInit {
   }];
   pieColors: string[] = [];
   headlines = [];
+  fileName: any;
 
   constructor(private dataService: DataService, public dialog: MatDialog) {
     this.edit = false;
@@ -50,10 +51,10 @@ export class EditModelComponent implements OnInit {
       var r = () => Math.random() * 256 >> 0;
       var color = `rgb(${r()}, ${r()}, ${r()})`;
       this.pieColors.push(color);
-      console.log('color',color);
+      // console.log('color',color);
     }
     this.pieChartColors[0]['backgroundColor'] = this.pieColors;
-    console.log('colors',this.pieColors);
+    // console.log('colors',this.pieColors);
   }
   public chartClicked(e: any): void {
     // console.log(e);
@@ -84,8 +85,10 @@ export class EditModelComponent implements OnInit {
 
   uploadLogDocument(file) {
     let fileReader = new FileReader();
+    
     fileReader.onload = (e) => {
-      // console.log(fileReader.result);
+      console.log('file',file.name);
+      this.fileName = file.name;
       this.arr["logs"] = fileReader.result
     }
 
@@ -152,7 +155,7 @@ export class EditModelComponent implements OnInit {
     else {
       this.selectedTemps.push(this.item);
     }
-    console.log(this.selectedTemps)
+    console.log('selectedTemps:',this.selectedTemps)
   }
 
   saveChanges() {
@@ -171,7 +174,7 @@ export class EditModelComponent implements OnInit {
     }
 
     this.groups[this.newTemp] = temp;
-    console.log(this.groups);
+    console.log('Groups: ',this.groups);
 
     this.pieChartLabels = Object.keys(this.groups);
     
@@ -182,7 +185,7 @@ export class EditModelComponent implements OnInit {
       this.headlines.push(this.groups[k][0]['EventId'])
     }
     this.generateRgb(this.pieChartData.length);
-
+    this.selectedTemps = []
   }
 
   splitTemplate(event, i, key) {
@@ -246,7 +249,7 @@ export class EditModelComponent implements OnInit {
   }
 
   saveEdits(){
-    this.dataService.save(this.groups).subscribe((data) => {
+    this.dataService.save(this.groups,this.fileName).subscribe((data) => {
         console.log("saveEdits: ", data);
     });
 
