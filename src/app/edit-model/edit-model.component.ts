@@ -87,7 +87,7 @@ export class EditModelComponent implements OnInit {
     let fileReader = new FileReader();
     
     fileReader.onload = (e) => {
-      console.log('file',file.name);
+      // console.log('file',file.name);
       this.fileName = file.name;
       this.arr["logs"] = fileReader.result
     }
@@ -103,7 +103,7 @@ export class EditModelComponent implements OnInit {
     this.dataService.uploadData(this.arr).subscribe((data) => {
       // console.log(data);
       let regrouped_logs = this.groupByKey(data, 'EventTemplate');
-      console.log('regrouped_logs ', regrouped_logs)
+      // console.log('regrouped_logs ', regrouped_logs)
       this.groups = regrouped_logs
       // console.log(this.groups)
       this.pieChartLabels = Object.keys(this.groups);
@@ -116,7 +116,7 @@ export class EditModelComponent implements OnInit {
       for (var i of this.pieChartLabels) {
         this.headlines.push(this.groups[i][0]['EventId'])
       }
-      console.log('headlines',this.headlines)
+      // console.log('headlines',this.headlines)
       this.generateRgb(this.pieChartData.length);
 
     }, error => {
@@ -146,7 +146,7 @@ export class EditModelComponent implements OnInit {
   onChange(id: string, isChecked: boolean) {
     this.ischecked = isChecked
     this.item = id;
-    console.log(this.item)
+    // console.log(this.item)
 
     if (this.selectedTemps.includes(this.item)) {
       this.selectedTemps.splice(this.selectedTemps.indexOf(this.item), 1);
@@ -155,7 +155,7 @@ export class EditModelComponent implements OnInit {
     else {
       this.selectedTemps.push(this.item);
     }
-    console.log('selectedTemps:',this.selectedTemps)
+    // console.log('selectedTemps:',this.selectedTemps)
   }
 
   saveChanges() {
@@ -165,6 +165,7 @@ export class EditModelComponent implements OnInit {
     this.headlines = [];
     for (var val of this.selectedTemps) {
       for (var i of this.groups[val]) {
+        i['EventTemplate'] = this.newTemp; 
         temp.push(i)
       }
 
@@ -174,7 +175,7 @@ export class EditModelComponent implements OnInit {
     }
 
     this.groups[this.newTemp] = temp;
-    console.log('Groups: ',this.groups);
+    // console.log('Groups: ',this.groups);
 
     this.pieChartLabels = Object.keys(this.groups);
     
@@ -190,27 +191,27 @@ export class EditModelComponent implements OnInit {
 
   splitTemplate(event, i, key) {
     this.a = key
-    console.log(i, key, 'i')
-    console.log(Object.keys(this.groups))
-    console.log(this.groups[key])
+    // console.log(i, key, 'i')
+    // console.log(Object.keys(this.groups))
+    // console.log(this.groups[key])
     this.splitArr = this.groups[key];
-    console.log(this.splitArr);
+    // console.log("Split",this.splitArr);
   }
 
   onSelect(id, isChecked: boolean, index) {
     this.checked = isChecked
     this.logId = id;
-    console.log(this.selectedLogs.includes(index))
+    // console.log(this.selectedLogs.includes(index),index)
     if (this.selectedLogs.includes(index)) {
-      this.selectedLogs.splice(index, 1);
+      this.selectedLogs.splice(this.selectedLogs.indexOf(index), 1);
 
       // 
     }
     else {
       this.selectedLogs.push(index);
-      console.log('hi', this.groups[this.logId['EventTemplate']])
+      // console.log('hi', this.groups[this.logId['EventTemplate']])
     }
-    console.log(this.selectedLogs);
+    // console.log('selectedLogs',this.selectedLogs);
   }
 
   save() {
@@ -218,29 +219,38 @@ export class EditModelComponent implements OnInit {
     this.pieChartLabels = [];
     this.pieChartData = [];
     this.headlines = [];
+    // console.log("splitArr", this.splitArr)
     for (var k of this.selectedLogs) {
-      l.push(this.splitArr[k])
+      // console.log('split_arr_k: ',this.splitArr[k])
+      this.splitArr[k]['EventTemplate'] = this.newTemplate;
+      l.push(this.splitArr[k]);
+      
     }
     this.groups[this.newTemplate] = l;
-    console.log('groups', this.groups)
+    this.selectedLogs.sort((a,b) => b - a);
+    // console.log('sorted_seesctedlogs',this.selectedLogs)
     for (var i of this.selectedLogs) {
-      console.log("adsfadsf", this.splitArr)
-
-      this.splitArr.splice(i, 1);
-      this.groups[this.a] = this.splitArr;
-
-
-
+      // console.log("start",i, this.groups[this.a][i])
+      this.groups[this.a].splice(i,1);
+      // this.groups[this.a].splice(this.groups[this.a].indexOf(i), 1);
+      // console.log("end", this.splitArr)
+      // this.groups[this.a] = this.splitArr;
 
     }
+
+    // console.log("test", this.splitArr);
+    // for (var p of this.groups[this.newTemplate]){
+    //   p['EventTemplate'] = this.newTemplate;
+    // }
+    // console.log('groups', this.groups)
     this.pieChartLabels = Object.keys(this.groups);
     
     for (var j of this.pieChartLabels) {
       this.pieChartData.push(this.groups[j].length)
     }
-    for (var x of this.pieChartLabels) {
-      this.headlines.push(this.groups[x][0]['EventId'])
-    }
+    // for (var x of this.pieChartLabels) {
+    //   this.headlines.push(this.groups[x][0]['EventId'])
+    // }
     this.generateRgb(this.pieChartData.length);
 
     // console.log(this.groups)
