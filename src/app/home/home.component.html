@@ -14,12 +14,12 @@
                 This tool can be used to generate a structured log report when given a raw log file as an input.
             </p>
             <p>
-                A log line in a log file can have :
+                A log line in a log file may consist of,
             </p>
-            <p>&#8226; headers - describing pre-configured info in a structured way</p>
-            <p>&#8226; natural language log message - event in human readable form</p>
+            <p>&#8226; Header fields - Describing pre-configured set of fields in a structured manner</p>
+            <p>&#8226; Natural language log message - Describing system event in natural language</p>
             <strong>
-                <p class="card-text">For Example : </p>
+                <p class="card-text">For Example, </p>
             </strong>
             <div class="card">
                 <div class="card-body">
@@ -52,21 +52,23 @@
                 </div>
             </div>
             <br>
-            <p> Identifying the system event for each log message and generating a representative templates for
-                identified events is the problem which this tool tries to address</p>
+            <p> This tool is able to identify the system events of log messages and generate a representative templates for
+                identified events.</p>
             <strong>
-                <p class="card-text">To do that the tool requires : </p>
+                <p class="card-text">To do that the tool requires, </p>
             </strong>
             <br>
-            <p>&#8226; Raw log file</p>
-            <p>&#8226; Configuration file with header structure</p>
+            <p>&#8226; A raw log file</p>
+            <p>&#8226; A configuration file with header structure</p>
             <div class="card">
                 <div class="card-body">
                     <strong>
-                        <p class="card-text">Sample Configuration File : (  file.txt    )</p>
+                        <p class="card-text">Sample Configuration File : (  config.txt    )</p>
                     </strong><br>
                     <p>
-                        <span style="color: royalblue;">{{log_format}}</span>
+                        <span style="color: royalblue;">
+                            &#123; 'log_file' : 'Spark' , 'log_format' : '[&lt;Time&gt;] [&lt;Level&gt;] &lt;Content&gt;' &#125;
+                        </span>
                     </p>
                 </div>
 
