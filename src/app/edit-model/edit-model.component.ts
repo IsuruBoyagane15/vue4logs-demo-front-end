@@ -36,10 +36,12 @@ export class EditModelComponent implements OnInit {
   pieColors: string[] = [];
   headlines = [];
   fileName: any;
+  saved: any;
 
   constructor(private dataService: DataService, public dialog: MatDialog) {
     this.edit = false;
     this.loadComponent = false;
+    this.saved = false;
     
   }
 
@@ -261,7 +263,13 @@ export class EditModelComponent implements OnInit {
   saveEdits(){
     this.dataService.save(this.groups,this.fileName).subscribe((data) => {
         console.log("saveEdits: ", data);
-    });
+        if (data){
+          this.saved = true;
+        }
 
+    });
+    setTimeout(()=>{                           //<<<---using ()=> syntax
+          this.saved = false;
+    }, 3000);
   }
 }
