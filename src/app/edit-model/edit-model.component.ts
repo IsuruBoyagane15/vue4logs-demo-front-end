@@ -245,6 +245,15 @@ export class EditModelComponent implements OnInit {
     //   p['EventTemplate'] = this.newTemplate;
     // }
     // console.log('groups', this.groups)
+
+    for(let t of Object.keys(this.groups)){
+      if((this.groups[t].length) == 0){
+        console.log(t,this.groups[t],this.groups[t].length)
+        delete this.groups[t]
+        
+      }
+    }
+
     this.pieChartLabels = Object.keys(this.groups);
     
     for (var j of this.pieChartLabels) {
@@ -255,7 +264,8 @@ export class EditModelComponent implements OnInit {
     // }
     this.generateRgb(this.pieChartData.length);
 
-    // console.log(this.groups)
+    console.log("groups",this.groups)
+    
     this.selectedLogs = [];
     this.a = '';
   }
